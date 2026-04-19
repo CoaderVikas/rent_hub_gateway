@@ -1,0 +1,50 @@
+#server port configuration
+server:
+  port: 9096
+
+#application name configuration
+spring:
+  application:
+    name: RENT-HUB-GAATEWAY
+  profiles:
+    active: local
+
+  cloud:
+    gateway:
+      routes:
+        - id: AUTH-SERVICE
+          uri: http://localhost:9091
+          predicates:
+            - Path=/rent-hub/auth/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: web-bff
+          uri: http://localhost:9095
+          predicates:
+            - Path=/api/v1/**
+          filters:
+            - AuthenticationFilter
+#
+#        - id: identity-service
+#          uri: lb://IDENTITY-SERVICE
+#          predicates:
+#            - Path=/auth/**
+
+#secret key configuration
+jwt:
+   secret : ${JWT_SECRET}
+
+#health configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+
+
