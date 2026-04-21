@@ -23,7 +23,7 @@ spring:
         - id: web-bff
           uri: http://localhost:9095
           predicates:
-            - Path=/api/v1/**
+            - Path=/rent-hub/api/v1/**
           filters:
             - AuthenticationFilter
 #
