@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
 		ApiErrorResponse errorResponse = new ApiErrorResponse();
 		errorResponse.setTimestamp(LocalDateTime.now());
 		errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-		errorResponse.setMessage("Something went wrong");
+		errorResponse.setMessage("Service currently unavailable due to scheduled maintenance .....");
 		errorResponse.setPath(request.getURI().getPath());
 
 		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
