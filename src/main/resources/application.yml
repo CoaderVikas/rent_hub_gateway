@@ -20,12 +20,21 @@ spring:
             - AuthenticationFilter
 
 
+        - id: web-bff-render
+          uri: https://web-bff.onrender.com
+          predicates:
+            - Path=/rent-hub/api/v1/**
+          filters:
+            - AuthenticationFilter
+
         - id: web-bff
           uri: http://localhost:9095
           predicates:
             - Path=/rent-hub/api/v1/**
           filters:
             - AuthenticationFilter
+
+
 #
 #        - id: identity-service
 #          uri: lb://IDENTITY-SERVICE
