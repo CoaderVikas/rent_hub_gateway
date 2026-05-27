@@ -1,0 +1,50 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: RENT-HUB-GATEWAY
+profiles:
+  active: dev
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/rent-hub/auth/**
+          filters:
+            - AuthenticationFilter
+
+        - id: WEB-BFF
+          uri: lb://WEB-BFF
+          predicates:
+            - Path=/rent-hub/api/v1/**
+          filters:
+            - AuthenticationFilter
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+    service-url:
+      defaultZone: https://eureca-server.onrender.com/eureka
+
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: ${JWT_SECRET}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    health:
+      show-details: always
