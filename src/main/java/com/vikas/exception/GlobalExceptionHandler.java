@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
 	/**
 	 * Handle Generic Exception
 	 */
-	@ExceptionHandler(Exception.class)
+	/*@ExceptionHandler(Exception.class)
 	public ResponseEntity<ApiErrorResponse> handleGlobalException(Exception ex, ServerHttpRequest request) {
 
 		ApiErrorResponse errorResponse = new ApiErrorResponse();
@@ -50,5 +50,5 @@ public class GlobalExceptionHandler {
 		errorResponse.setPath(request.getURI().getPath());
 
 		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+	}*/
 }
