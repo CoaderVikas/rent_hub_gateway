@@ -26,7 +26,7 @@ public class CorsConfig implements WebFluxConfigurer  {
 		CorsConfiguration config = new CorsConfiguration();
 		// config.addAllowedOrigin("http://localhost:5173");
 		config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://127.0.0.1:5173",
-				"https://overappreciative-unilludedly-larae.ngrok-free.dev", "https://rent-hub-v1.vercel.app"));
+				"https://overappreciative-unilludedly-larae.ngrok-free.dev", "https://rent-hub-v1.vercel.app","https://rental-hyca.onrender.com"));
 		config.addAllowedMethod("*"); // allows GET, POST, etc.
 		config.addAllowedHeader("*");
 		config.setAllowCredentials(true);

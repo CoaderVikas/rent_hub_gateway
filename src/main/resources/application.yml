@@ -5,7 +5,7 @@ server:
 #application name configuration
 spring:
   application:
-    name: RENT-HUB-GAATEWAY
+    name: RENT-HUB-GATEWAY
   profiles:
     active: local
 
@@ -20,14 +20,14 @@ spring:
             - AuthenticationFilter
 
 
-        - id: web-bff-render
-          uri: https://web-bff.onrender.com
-          predicates:
-            - Path=/rent-hub/api/v1/**
-          filters:
-            - AuthenticationFilter
+#        - id: web-bff-render
+#          uri: https://web-bff.onrender.com
+#          predicates:
+#            - Path=/rent-hub/api/v1/**
+#          filters:
+#            - AuthenticationFilter
 
-        - id: web-bff
+        - id: WEB-BFF
           uri: http://localhost:9095
           predicates:
             - Path=/rent-hub/api/v1/**
