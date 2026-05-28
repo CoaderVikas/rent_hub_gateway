@@ -1,12 +1,9 @@
 server:
-  port: ${PORT}
+  port: ${PORT:8080}
 
 spring:
   application:
     name: RENT-HUB-GATEWAY
-
-  profiles:
-    active: dev
 
   cloud:
     gateway:
@@ -49,8 +46,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
-    reactor.netty.http.client: DEBUG
