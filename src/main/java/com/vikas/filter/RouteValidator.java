@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 public class RouteValidator {
 
 	public static final List<String> openApiEndpoints = List.of(
+			"/uploads/properties/**",
 			"/api/v1/auth/login",
 			"/api/v1/auth/google" ,
 			"/api/v1/auth/register",

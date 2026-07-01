@@ -20,6 +20,12 @@ spring:
             - AuthenticationFilter
 
 
+        - id: PROPERTY-IMAGES
+          uri: http://localhost:9090
+          predicates:
+            - Path=/uploads/properties/**
+
+
 #        - id: web-bff-render
 #          uri: https://web-bff.onrender.com
 #          predicates:
