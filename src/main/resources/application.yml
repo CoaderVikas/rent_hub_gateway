@@ -25,6 +25,13 @@ spring:
           predicates:
             - Path=/uploads/properties/**
 
+        - id: NOTIFICATION-WS
+          uri: ws://localhost:9092
+          predicates:
+            - Path=/rent-hub/ws/**
+          filters:
+            - StripPrefix=1
+
 
 #        - id: web-bff-render
 #          uri: https://web-bff.onrender.com
@@ -40,8 +47,6 @@ spring:
           filters:
             - AuthenticationFilter
 
-
-#
 #        - id: identity-service
 #          uri: lb://IDENTITY-SERVICE
 #          predicates:
