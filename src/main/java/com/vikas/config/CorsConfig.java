@@ -1,7 +1,8 @@
 package com.vikas.config;
 
-import java.util.Arrays;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -19,21 +20,21 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
  */
 
 @Configuration
-public class CorsConfig implements WebFluxConfigurer  {
+public class CorsConfig implements WebFluxConfigurer {
+
+	@Value("${cors.allowed-origins}")
+	private List<String> allowedOrigins;
 
 	@Bean
 	public CorsWebFilter corsWebFilter() {
 		CorsConfiguration config = new CorsConfiguration();
-		// config.addAllowedOrigin("http://localhost:5173");
-		config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://127.0.0.1:5173",
-				"https://rent-hub-v1.vercel.app","https://rental-hyca.onrender.com","https://auth-service-nbr4.onrender.com"));
-		config.addAllowedMethod("*"); // allows GET, POST, etc.
+		config.setAllowedOrigins(allowedOrigins);
+		config.addAllowedMethod("*");
 		config.addAllowedHeader("*");
 		config.setAllowCredentials(true);
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", config);
-
 		return new CorsWebFilter(source);
 	}
 }

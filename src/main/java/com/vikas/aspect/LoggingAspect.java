@@ -24,8 +24,8 @@ public class LoggingAspect {
 	
 	@Around(
 			 "execution(* com.vikas.service..*(..)) || " +
-					    "execution(* com.vikas.config..*(..)) || " +
-					    "execution(* com.vikas.util..*(..))"
+			 "execution(* com.vikas.config..*(..)) || " +
+			 "execution(* com.vikas.util..*(..))"
 		)
 	public Object trackMethodExecution(ProceedingJoinPoint joinPoint) throws Throwable {
 		String className = joinPoint.getTarget().getClass().getSimpleName();
@@ -34,7 +34,8 @@ public class LoggingAspect {
 		long startTime = System.currentTimeMillis();
 
 		try {
-			log.info("**** ENTER | {}.{}() | args={}", className, methodName, Arrays.toString(args));
+			//log.info("**** ENTER | {}.{}() | args={}", className, methodName, Arrays.toString(args));
+			log.info("**** ENTER | {}.{}()", className, methodName);
 			Object result = joinPoint.proceed();
 			long endTime = System.currentTimeMillis();
 			log.info("**** EXIT  | {}.{}() | time={} ms", className, methodName, (endTime - startTime));

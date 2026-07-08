@@ -1,14 +1,24 @@
+# ==========================================================
+# SERVER CONFIGURATION : Application port
+# ==========================================================
 server:
-  port: ${PORT:8080}
+  port: ${PORT}
 
+# ==========================================================
+# SPRING APPLICATION CONFIGURATION : Service name (registered in Eureka)
+# ==========================================================
 spring:
   application:
     name: RENT-HUB-GATEWAY
 
+  # ----------------------------------------------------------
+  # Spring Cloud Gateway - Route Definitions
+  # ----------------------------------------------------------
   cloud:
     gateway:
       routes:
 
+        # Auth Service Routes
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE
           predicates:
@@ -16,6 +26,7 @@ spring:
           filters:
             - AuthenticationFilter
 
+        # Web BFF (Backend for Frontend) Routes
         - id: WEB-BFF
           uri: lb://WEB-BFF
           predicates:
@@ -23,32 +34,37 @@ spring:
           filters:
             - AuthenticationFilter
 
+        # Property Images Routes (Static/Uploaded Files)
         - id: PROPERTY-IMAGES
           uri: lb://PROPERTY-SERVICE
           predicates:
             - Path=/uploads/properties/**
 
+        # Notification Service - WebSocket Routes
         - id: NOTIFICATION-WS
           uri: lb:ws://NOTIFICATION-SERVICE
           predicates:
             - Path=/rent-hub/ws/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=1                              # Strips first path segment before forwarding
 
+
+# ==========================================================
+# EUREKA CLIENT CONFIGURATION
+# ==========================================================
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-
+    register-with-eureka: true                           # Register this service with Eureka
+    fetch-registry: true                                 # Fetch registry info from Eureka
     service-url:
-      defaultZone: https://eureca-server-e09m.onrender.com/eureka
-
+      defaultZone: https://eureca-server-e09m.onrender.com/eureka   # Eureka server URL
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true                               # Use IP address instead of hostname
 
-jwt:
-  secret: ${JWT_SECRET}
-
+# ==========================================================
+# ACTUATOR / MANAGEMENT ENDPOINTS CONFIGURATION,
+#            Expose all actuator endpoints
+# ==========================================================
 management:
   endpoints:
     web:
@@ -57,4 +73,18 @@ management:
 
   endpoint:
     health:
-      show-details: always
+      show-details: always                                # Always show full health details
+
+
+# ==========================================================
+# JWT CONFIGURATION:JWT secret key (from environment variable)
+# ==========================================================
+jwt:
+  secret: ${JWT_SECRET}
+
+
+# ==========================================================
+# CORS CONFIGURATION : Comma-separated allowed origins (from env variable)
+# ==========================================================
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS}

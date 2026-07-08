@@ -32,29 +32,12 @@ spring:
           filters:
             - StripPrefix=1
 
-
-#        - id: web-bff-render
-#          uri: https://web-bff.onrender.com
-#          predicates:
-#            - Path=/rent-hub/api/v1/**
-#          filters:
-#            - AuthenticationFilter
-
         - id: WEB-BFF
           uri: http://localhost:9095
           predicates:
             - Path=/rent-hub/api/v1/**
           filters:
             - AuthenticationFilter
-
-#        - id: identity-service
-#          uri: lb://IDENTITY-SERVICE
-#          predicates:
-#            - Path=/auth/**
-
-#secret key configuration
-jwt:
-   secret : ${JWT_SECRET}
 
 #health configuration
 management:
@@ -67,4 +50,15 @@ management:
       show-details: always
 
 
+# ==========================================================
+# JWT CONFIGURATION:JWT secret key (from environment variable)
+# ==========================================================
+jwt:
+  secret: ${JWT_SECRET}
 
+
+# ==========================================================
+# CORS CONFIGURATION : Comma-separated allowed origins (from env variable)
+# ==========================================================
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS}

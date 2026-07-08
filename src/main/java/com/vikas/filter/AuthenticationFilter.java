@@ -12,8 +12,10 @@ import com.vikas.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Class : AuthenticationFilter Description: Custom Gateway Filter to validate
- * JWT token for secured routes. Author : Vikas Yadav Created On : Mar 3, 2026
+ * Class : AuthenticationFilter 
+ * Description: Custom Gateway Filter to validate JWT token for secured routes. 
+ * Author : Vikas Yadav 
+ * Created On : Mar 3, 2026
  * Version : 1.1
  */
 
@@ -43,8 +45,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 			// Step 1: Check if route is secured
 			if (validator.isSecured.test(exchange.getRequest())) {
 
-				log.info("********* Secured route detected. Performing authentication check. *********");
-
 				// Step 2: Validate Authorization header presence
 				if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
 					log.error("********* Authorization header is missing *********");
@@ -61,8 +61,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 				// Step 4: Validate JWT token
 				try {
 					jwtUtil.validateToken(authHeader);
-					log.info("********* JWT token validation successful ********");
-
 				} catch (Exception e) {
 					log.error("********* Invalid JWT token: {} *********", e.getMessage());
 					throw new RentHubServiceException("Unauthorized access to application");
@@ -73,9 +71,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 		});
 	}
 
-	/**
-	 * Configuration class (Required by AbstractGatewayFilterFactory)
-	 */
 	public static class Config {
 		// Add custom configuration properties if needed
 	}
