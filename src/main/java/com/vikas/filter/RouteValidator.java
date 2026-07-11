@@ -20,6 +20,7 @@ public class RouteValidator {
 	public static final List<String> openApiEndpoints = List.of(
 			"/uploads/properties/**",
 			"/api/v1/auth/login",
+			"/api/v1/auth/phone/login-otp",
 			"/api/v1/auth/google" ,
 			"/api/v1/auth/register",
 			"/api/v1/auth/password-reset",
@@ -27,7 +28,7 @@ public class RouteValidator {
 			"/api/v1/auth/refresh",
 			"/rent-hub/auth/auth/login",
 			"/rent-hub/auth/auth/register",
-			"/rent-hub/auth/password/reset",
+			"/api/v1/auth/reset",
 			"/rent-hub/auth/refresh",
 			//"/rent-hub/auth/password/forgot?username=" + "{username}",
 			"/rent-hub/auth/password/forgot",
