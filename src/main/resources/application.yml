@@ -15,7 +15,7 @@ spring:
         - id: AUTH-SERVICE
           uri: http://localhost:9091
           predicates:
-            - Path=/rent-hub/auth/**
+            - Path=/rent-hub/api/v1/v2/auth/**
           filters:
             - AuthenticationFilter
 
@@ -62,3 +62,14 @@ jwt:
 # ==========================================================
 cors:
   allowed-origins: ${CORS_ALLOWED_ORIGINS}
+
+# ================================
+# LOGGING
+# ================================
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss}){faint} %clr(%-5level) [request-id=%X{requestId}] [trace-id=%X{trace_id}] [%X{clientIp}] %clr([%thread]){magenta} %clr(%logger{36}){cyan} : %msg%n%wEx{5}"
+  level:
+    root: INFO
+    org.hibernate.orm.connections.pooling: ERROR
+    com.vikas.webbff: DEBUG
