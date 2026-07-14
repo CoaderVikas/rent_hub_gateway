@@ -19,6 +19,14 @@ spring:
           filters:
             - AuthenticationFilter
 
+#********** TENANTS-SERVICE rounting **************#
+        - id: TENANTS-SERVICE
+          uri: http://localhost:9098
+          predicates:
+            - Path=/rent-hub/api/v1/tenants/**
+          filters:
+            - AuthenticationFilter
+
 
         - id: PROPERTY-IMAGES
           uri: http://localhost:9090

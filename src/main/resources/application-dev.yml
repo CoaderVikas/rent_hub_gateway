@@ -22,7 +22,15 @@ spring:
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/rent-hub/auth/**
+            - Path=/rent-hub/api/v1/v2/auth/**
+          filters:
+            - AuthenticationFilter
+
+#********** TENANTS-SERVICE rounting **************#
+        - id: TENANTS-SERVICE
+          uri: lb://TENANTS-SERVICE
+          predicates:
+            - Path=/rent-hub/api/v1/tenants/**
           filters:
             - AuthenticationFilter
 
