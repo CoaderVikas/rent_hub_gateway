@@ -18,7 +18,7 @@ spring:
     gateway:
       routes:
 
-        # Auth Service Routes
+#********** Auth-SERVICE rounting **************#
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE
           predicates:
@@ -33,6 +33,23 @@ spring:
             - Path=/rent-hub/api/v1/tenants/**
           filters:
             - AuthenticationFilter
+
+#********** PROPERTY-SERVICE rounting **************#
+        - id: PROPERTY-SERVICE
+          uri: lb://PROPERTY-SERVICE
+          predicates:
+            - Path=/rent-hub/api/v1/properties/**
+          filters:
+            - AuthenticationFilter
+
+#********** AGREEMENT-SERVICE rounting **************#
+        - id: AGREEMENT-SERVICE
+          uri: lb://AGREEMENT-SERVICE
+          predicates:
+            - Path=/rent-hub/api/v1/agreement/**
+          filters:
+            - AuthenticationFilter
+
 
         # Web BFF (Backend for Frontend) Routes
         - id: WEB-BFF

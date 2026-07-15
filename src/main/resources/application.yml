@@ -12,6 +12,8 @@ spring:
   cloud:
     gateway:
       routes:
+
+#********** AUTH-SERVICE rounting **************#
         - id: AUTH-SERVICE
           uri: http://localhost:9091
           predicates:
@@ -24,6 +26,22 @@ spring:
           uri: http://localhost:9098
           predicates:
             - Path=/rent-hub/api/v1/tenants/**
+          filters:
+            - AuthenticationFilter
+
+#********** PROPERTY-SERVICE rounting **************#
+        - id: PROPERTY-SERVICE
+          uri: http://localhost:9090
+          predicates:
+            - Path=/rent-hub/api/v1/properties/**
+          filters:
+            - AuthenticationFilter
+
+#********** AGREEMENT-SERVICE rounting **************#
+        - id: AGREEMENT-SERVICE
+          uri: http://localhost:9099
+          predicates:
+            - Path=/rent-hub/api/v1/agreement/**
           filters:
             - AuthenticationFilter
 
