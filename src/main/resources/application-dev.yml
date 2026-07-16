@@ -22,7 +22,7 @@ spring:
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/rent-hub/api/v1/v2/auth/**
+            - Path=/rent-hub/api/v1/auth/**
           filters:
             - AuthenticationFilter
 
@@ -49,6 +49,23 @@ spring:
             - Path=/rent-hub/api/v1/agreement/**
           filters:
             - AuthenticationFilter
+
+#********** PAYMENT-SERVICE rounting **************#
+        - id: PAYMENT-SERVICE
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/rent-hub/api/v1/payment/**
+          filters:
+            - AuthenticationFilter
+
+#********** NOTIFICATION-SERVICE rounting **************#
+        - id: NOTIFICATION-SERVICE
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/rent-hub/api/v1/notifications/**
+          filters:
+            - AuthenticationFilter
+
 
 
         # Web BFF (Backend for Frontend) Routes
