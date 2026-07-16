@@ -45,6 +45,22 @@ spring:
           filters:
             - AuthenticationFilter
 
+#********** PAYMENT-SERVICE rounting **************#
+        - id: PAYMENT-SERVICE
+          uri: http://localhost:9097
+          predicates:
+            - Path=/rent-hub/api/v1/payment/**
+          filters:
+            - AuthenticationFilter
+
+#********** NOTIFICATION-SERVICE rounting **************#
+        - id: NOTIFICATION-SERVICE
+          uri: http://localhost:9092
+          predicates:
+            - Path=/rent-hub/api/v1/notifications/**
+          filters:
+            - AuthenticationFilter
+
 
         - id: PROPERTY-IMAGES
           uri: http://localhost:9090
