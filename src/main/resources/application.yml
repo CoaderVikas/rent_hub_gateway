@@ -17,7 +17,7 @@ spring:
         - id: AUTH-SERVICE
           uri: http://localhost:9091
           predicates:
-            - Path=/rent-hub/api/v1/v2/auth/**
+            - Path=/rent-hub/api/v1/auth/**
           filters:
             - AuthenticationFilter
 
@@ -33,7 +33,7 @@ spring:
         - id: PROPERTY-SERVICE
           uri: http://localhost:9090
           predicates:
-            - Path=/rent-hub/api/v1/properties/**
+            - Path=/rent-hub/api/v1/properties/** , /rent-hub/api/v1/bookings/**
           filters:
             - AuthenticationFilter
 
