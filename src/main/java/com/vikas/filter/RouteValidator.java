@@ -26,12 +26,23 @@ public class RouteValidator {
 			"rent-hub/api/v1/auth/register",
 			"rent-hub/api/v1/auth/password-reset",
 			"rent-hub/api/v1/auth/password-forgot",
-			"/rent-hub/auth/auth/login",
-			"/rent-hub/auth/auth/register",
 			"/rent-hub/api/v1/auth/reset",
 			"/rent-hub/api/v1/auth/jwt/refresh",
-			//"/rent-hub/auth/password/forgot?username=" + "{username}",
 			"/rent-hub/api/v1/auth/password/forgot",
+			
+			"/rent-hub/api/v2/auth/phone/reset",
+			"rent-hub/api/v2/auth/login",
+			"rent-hub/api/v2/auth/phone/login-otp",
+			"rent-hub/api/v2/auth/google" ,
+			"rent-hub/api/v2/auth/register",
+			"rent-hub/api/v2/auth/password-reset",
+			"rent-hub/api/v2/auth/password-forgot",
+			"/rent-hub/api/v2/auth/reset",
+			"/rent-hub/api/v2/auth/jwt/refresh",
+			"/rent-hub/api/v2/auth/password/forgot",
+			
+			
+			
 			"/swagger-ui/",
 			"/v3/api-docs/",
 			"/swagger-ui.html",

@@ -62,10 +62,10 @@ spring:
             - AuthenticationFilter
 
 
-        - id: PROPERTY-IMAGES
-          uri: http://localhost:9090
-          predicates:
-            - Path=/uploads/properties/**
+#        - id: PROPERTY-IMAGES
+#          uri: http://localhost:9090
+#          predicates:
+#            - Path=/uploads/properties/**
 
         - id: NOTIFICATION-WS
           uri: ws://localhost:9092
@@ -74,12 +74,26 @@ spring:
           filters:
             - StripPrefix=1
 
-        - id: WEB-BFF
-          uri: http://localhost:9095
+#********** MODULER-MONOLITH SERVICE rounting **************#
+
+        - id: RENT-HUB-SERVICE
+          uri: http://localhost:8452
           predicates:
-            - Path=/rent-hub/api/v1/**
+            - Path=/rent-hub/api/v2/**
           filters:
             - AuthenticationFilter
+
+        - id: NOTIFICATION-WS-SERVICE
+          uri: ws://localhost:8452
+          predicates:
+            - Path=/rent-hub/web-socket/**
+          filters:
+            - StripPrefix=1
+
+#        - id: PROPERTY-IMAGES-V2
+#          uri: http://localhost:8452
+#          predicates:
+#            - Path=/uploads/properties/**
 
 #health configuration
 management:
