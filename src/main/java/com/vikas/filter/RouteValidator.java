@@ -40,6 +40,7 @@ public class RouteValidator {
 			"/rent-hub/api/v2/auth/reset",
 			"/rent-hub/api/v2/auth/jwt/refresh",
 			"/rent-hub/api/v2/auth/password/forgot",
+			"/rent-hub/web-socket",
 			
 			
 			
