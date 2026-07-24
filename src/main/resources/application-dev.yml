@@ -2,7 +2,7 @@
 # SERVER CONFIGURATION : Application port
 # ==========================================================
 server:
-  port: ${PORT}
+  port: ${PORT:9096}
 
 # ==========================================================
 # SPRING APPLICATION CONFIGURATION : Service name (registered in Eureka)
@@ -84,12 +84,27 @@ spring:
 
         # Notification Service - WebSocket Routes
         - id: NOTIFICATION-WS
-          uri: lb:ws://NOTIFICATION-SERVICE
+          uri: lb:wss://NOTIFICATION-SERVICE
           predicates:
             - Path=/rent-hub/ws/**
           filters:
             - StripPrefix=1                              # Strips first path segment before forwarding
 
+#********** MODULER-MONOLITH SERVICE rounting **************#
+
+        - id: RENT-HUB-SERVICE
+          uri: lb://RENT-HUB-SERVICE
+          predicates:
+            - Path=/rent-hub/api/v2/**
+          filters:
+            - AuthenticationFilter
+
+        - id: NOTIFICATION-WS-SERVICE
+          uri: wss://RENT-HUB-SERVICE
+          predicates:
+            - Path=/rent-hub/web-socket/**
+          filters:
+            - StripPrefix=1
 
 # ==========================================================
 # EUREKA CLIENT CONFIGURATION
